@@ -48,15 +48,18 @@ function ProjectList() {
   }
 
   return (
-    <ul>
-      {projects.map((p) => {
-        return (
-          <li key={p.slug}>
-            {p.title} ({p.slug})
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <h2>Project list</h2>
+      <ul>
+        {projects.map((p) => {
+          return (
+            <li key={p.slug}>
+              {p.title} ({p.slug})
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 }
 
