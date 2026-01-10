@@ -1,9 +1,7 @@
-import {ProjectList} from "./components/ProjectList.tsx";
+import { ProjectList } from './components/ProjectList.tsx';
 
 function App() {
-  return (
-    <ProjectList/>
-  )
+  return <ProjectList />;
 }
 
-export { App }
+export { App };
