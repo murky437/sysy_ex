@@ -15,6 +15,7 @@ services:
       target: dev
     volumes:
       - ./back:/app
+    command: sh -c "deploy/docker/php/dev_entrypoint.sh && php-fpm"
     depends_on:
       - db
   nginx:
