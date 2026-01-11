@@ -1,31 +1,63 @@
+import * as React from 'react';
 import { useState } from 'react';
+import type { Project } from '../App.tsx';
 
 const API_URL = 'http://localhost:8802/api';
 
-function AddProjectForm() {
+interface Props {
+  onProjectAdded: (project: Project) => void;
+}
+
+interface CreateProjectResponse {
+  data: Project;
+}
+
+interface ValidationErrorResponse {
+  message: string;
+  errors: { [field: string]: string[] };
+}
+
+function AddProjectForm({ onProjectAdded }: Props) {
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
+  const [errorResponse, setErrorResponse] =
+    useState<ValidationErrorResponse | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    setLoading(true);
+
     try {
       const res = await fetch(API_URL + '/projects', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ title, slug }),
       });
 
       if (!res.ok) {
+        if (res.status == 422) {
+          const data: ValidationErrorResponse = await res.json();
+          setErrorResponse(data);
+          return;
+        }
         throw new Error('Failed to add project');
       }
 
+      setErrorResponse(null);
+      const data: CreateProjectResponse = await res.json();
+      onProjectAdded(data.data);
+
       setTitle('');
       setSlug('');
-      alert('Project added successfully!');
     } catch (error) {
       console.error(error);
-      alert('Error adding project');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -33,6 +65,9 @@ function AddProjectForm() {
     <>
       <h2>Add a new project</h2>
       <form onSubmit={handleSubmit}>
+        {errorResponse && (
+          <div style={{ color: 'red' }}>{errorResponse.message}</div>
+        )}
         <div>
           <label htmlFor="project-title">Title: </label>
           <input
@@ -41,6 +76,13 @@ function AddProjectForm() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          {errorResponse?.errors.title && (
+            <ul style={{ color: 'red', margin: 0, paddingLeft: '20px' }}>
+              {errorResponse.errors.title.map((msg, i) => (
+                <li key={i}>{msg}</li>
+              ))}
+            </ul>
+          )}
         </div>
         <div>
           <label htmlFor="project-slug">Slug: </label>
@@ -50,8 +92,17 @@ function AddProjectForm() {
             value={slug}
             onChange={(e) => setSlug(e.target.value)}
           />
+          {errorResponse?.errors.slug && (
+            <ul style={{ color: 'red', margin: 0, paddingLeft: '20px' }}>
+              {errorResponse.errors.slug.map((msg, i) => (
+                <li key={i}>{msg}</li>
+              ))}
+            </ul>
+          )}
         </div>
-        <button type="submit">Add</button>
+        <button type="submit" disabled={loading}>
+          Add
+        </button>
       </form>
     </>
   );
