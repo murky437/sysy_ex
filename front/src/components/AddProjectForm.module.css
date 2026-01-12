@@ -1,0 +1,53 @@
+.addProjectForm {
+  margin-top: 100px;
+
+  .formRow {
+    margin-top: 15px;
+  }
+
+  label {
+    display: block;
+  }
+
+  input {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 5px 10px;
+    margin-top: 5px;
+    color: var(--color-off-white);
+  }
+
+  input:focus {
+    outline: 1px dashed rgba(255, 255, 255, 0.2);
+  }
+
+  .generalError {
+    color: var(--color-red);
+    background-color: color-mix(in srgb, var(--color-red) 10%, transparent);
+    padding: 15px;
+    border-radius: 3px;
+  }
+
+  .fieldError {
+    color: var(--color-red);
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+
+  .addButton {
+    background-color: var(--color-green-dark);
+    border: 1px solid var(--color-green);
+    color: var(--color-green);
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
+
+  .addButton:hover {
+    background-color: var(--color-green);
+    border: 1px solid var(--color-green-dark);
+    color: var(--color-green-dark);
+  }
+}

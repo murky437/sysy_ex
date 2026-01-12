@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800');
+
+:root {
+  --color-off-black: #181818;
+  --color-off-white: #fafafa;
+  --color-red: #e45746;
+  --color-red-dark: color-mix(in srgb, var(--color-red) 60%, black);
+  --color-green: #80a37c;
+  --color-green-dark: color-mix(in srgb, var(--color-green) 60%, black);
+}
+
+:root {
+  --font-sans: 'Open Sans';
+  --font-mono: Consolas;
+  --font-serif: Vollkorn;
+  --font-logo: 'Pirata One';
+}
+
 *,
 *::before,
 *::after {
@@ -11,11 +29,12 @@ body {
 }
 
 body {
-  background-color: #111;
-  color: #fafafa;
+  background-color: var(--color-off-black);
+  color: var(--color-off-white);
+  font-family: var(--font-sans), sans-serif;
 }
 
 #root {
-    max-width: 600px;
-    margin: 0 auto;
+  max-width: 600px;
+  margin: 0 auto;
 }

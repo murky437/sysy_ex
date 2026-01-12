@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import type { Project } from '../App.tsx';
+import styles from './AddProjectForm.module.css';
 
 const API_URL = 'http://localhost:8802/api';
 
@@ -62,49 +63,50 @@ function AddProjectForm({ onProjectAdded }: Props) {
   };
 
   return (
-    <>
+    <div className={styles.addProjectForm}>
       <h2>Add a new project</h2>
       <form onSubmit={handleSubmit}>
         {errorResponse && (
-          <div style={{ color: 'red' }}>{errorResponse.message}</div>
+          <div className={styles.generalError}>{errorResponse.message}</div>
         )}
-        <div>
-          <label htmlFor="project-title">Title: </label>
+        <div className={styles.formRow}>
+          <label htmlFor="project-title">Title</label>
           <input
             id="project-title"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            autoFocus={true}
           />
-          {errorResponse?.errors.title && (
-            <ul style={{ color: 'red', margin: 0, paddingLeft: '20px' }}>
-              {errorResponse.errors.title.map((msg, i) => (
-                <li key={i}>{msg}</li>
-              ))}
-            </ul>
-          )}
+          {errorResponse?.errors.title &&
+            errorResponse.errors.title.map((msg, i) => (
+              <div className={styles.fieldError} key={i}>
+                {msg}
+              </div>
+            ))}
         </div>
-        <div>
-          <label htmlFor="project-slug">Slug: </label>
+        <div className={styles.formRow}>
+          <label htmlFor="project-slug">Slug</label>
           <input
             id="project-slug"
             type="text"
             value={slug}
             onChange={(e) => setSlug(e.target.value)}
           />
-          {errorResponse?.errors.slug && (
-            <ul style={{ color: 'red', margin: 0, paddingLeft: '20px' }}>
-              {errorResponse.errors.slug.map((msg, i) => (
-                <li key={i}>{msg}</li>
-              ))}
-            </ul>
-          )}
+          {errorResponse?.errors.slug &&
+            errorResponse.errors.slug.map((msg, i) => (
+              <div className={styles.fieldError} key={i}>
+                {msg}
+              </div>
+            ))}
         </div>
-        <button type="submit" disabled={loading}>
-          Add
-        </button>
+        <div className={styles.formRow}>
+          <button className={styles.addButton} type="submit" disabled={loading}>
+            Add
+          </button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 
