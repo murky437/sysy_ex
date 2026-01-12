@@ -24,7 +24,7 @@ function LoginPage() {
     <div className={styles.loginPage}>
       <h2>Please log in</h2>
       <div className={styles.infoText}>
-        (Use any credentials, its not connected to API yet)
+        (Use any credentials, it is not connected to API yet)
       </div>
       <form onSubmit={handleSubmit}>
         <div className="formRow">
