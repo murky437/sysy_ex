@@ -19,22 +19,30 @@ function ProjectList({ projects, deleteProject }: Props) {
           </tr>
         </thead>
         <tbody>
-          {projects.map((p) => {
-            return (
-              <tr key={p.slug}>
-                <td>{p.title}</td>
-                <td>{p.slug}</td>
-                <td>
-                  <button
-                    className={styles.deleteButton}
-                    onClick={() => deleteProject(p.slug)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+          {projects.length === 0 ? (
+            <tr>
+              <td colSpan={3} style={{ textAlign: 'center' }}>
+                No projects to show. Add some below.
+              </td>
+            </tr>
+          ) : (
+            projects.map((p) => {
+              return (
+                <tr key={p.slug}>
+                  <td>{p.title}</td>
+                  <td>{p.slug}</td>
+                  <td>
+                    <button
+                      className={styles.deleteButton}
+                      onClick={() => deleteProject(p.slug)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })
+          )}
         </tbody>
       </table>
     </div>
