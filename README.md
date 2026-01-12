@@ -43,16 +43,16 @@ I chose Nginx for dev server, because it is pretty easy to set up, and I don't n
   - Integration tests
   - Documentation in README.md
   - Deleting projects
+  - Login (front end only)
 
 
 ## Next steps...
 
-- Add update endpoint and update form (modal?)
-- Add react router and / route
-- Add auth check and /login page
-- Add login endpoint (api version of Laravel fortify?)
+- Add login and logout endpoints (api version of Laravel fortify?)
+- Hook up front end login with api
 - Add default user (via migration)
 - Add /register page and link to it from login
 - Add register endpoint (api version of Laravel fortify?)
+- Add update endpoint and update form (modal?)
 - Add .gitlab-ci.yml deployment to server
 
