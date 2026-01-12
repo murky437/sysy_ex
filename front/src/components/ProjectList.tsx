@@ -3,9 +3,10 @@ import styles from './ProjectList.module.css';
 
 interface Props {
   projects: Project[];
+  deleteProject: (slug: string) => void;
 }
 
-function ProjectList({ projects }: Props) {
+function ProjectList({ projects, deleteProject }: Props) {
   return (
     <div className={styles.projectList}>
       <h2>Project list</h2>
@@ -24,7 +25,12 @@ function ProjectList({ projects }: Props) {
                 <td>{p.title}</td>
                 <td>{p.slug}</td>
                 <td>
-                  <button className={styles.deleteButton}>Delete</button>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => deleteProject(p.slug)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             );

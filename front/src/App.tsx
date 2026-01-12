@@ -56,9 +56,26 @@ function App() {
     setProjects((prev) => [...prev, project]);
   };
 
+  const deleteProject = async (slug: string) => {
+    try {
+      const res = await fetch(API_URL + '/projects/' + slug, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+      if (res.ok) {
+        setProjects((prev) => prev.filter((p) => p.slug !== slug));
+      }
+    } catch (err: unknown) {
+      console.log(err);
+    }
+    setProjects((prev) => prev.filter((p) => p.slug !== slug));
+  };
+
   return (
     <>
-      <ProjectList projects={projects} />
+      <ProjectList projects={projects} deleteProject={deleteProject} />
       <AddProjectForm onProjectAdded={onProjectAdded} />
     </>
   );
