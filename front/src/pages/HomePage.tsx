@@ -1,6 +1,8 @@
-import { ProjectList } from './components/ProjectList.tsx';
-import { AddProjectForm } from './components/AddProjectForm.tsx';
+import { ProjectList } from '../components/ProjectList.tsx';
+import { AddProjectForm } from '../components/AddProjectForm.tsx';
 import { useEffect, useState } from 'react';
+import styles from './HomePage.module.css';
+import { useAuth } from '../auth/authContext.tsx';
 
 const API_URL = 'http://localhost:8802/api';
 
@@ -12,10 +14,11 @@ interface Project {
 interface ProjectListResponse {
   data: Project[];
 }
-function App() {
+function HomePage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { username, logout } = useAuth();
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -74,12 +77,22 @@ function App() {
   };
 
   return (
-    <>
+    <div className={styles.homePage}>
+      {username && (
+        <div className={styles.loginInfo}>
+          <div className={styles.nameText}>
+            Logged in as: <span className={styles.name}>{username}</span>
+          </div>
+          <button className={styles.logoutButton} onClick={() => logout()}>
+            Log out
+          </button>
+        </div>
+      )}
       <ProjectList projects={projects} deleteProject={deleteProject} />
       <AddProjectForm onProjectAdded={onProjectAdded} />
-    </>
+    </div>
   );
 }
 
-export { App };
+export { HomePage };
 export type { Project };

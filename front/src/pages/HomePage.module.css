@@ -1,0 +1,35 @@
+.homePage {
+  .loginInfo {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 20px 0 200px;
+  }
+
+  .nameText {
+    margin-right: 20px;
+    color: var(--color-off-white-dark);
+  }
+
+  .name {
+    font-weight: bold;
+    color: var(--color-off-white);
+  }
+
+  .logoutButton {
+    background-color: var(--color-red-dark);
+    border: 1px solid var(--color-red);
+    color: var(--color-red);
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
+
+  .logoutButton:hover {
+    background-color: var(--color-red);
+    border: 1px solid var(--color-red-dark);
+    color: var(--color-red-dark);
+  }
+}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import type { Project } from '../App.tsx';
+import type { Project } from '../pages/HomePage.tsx';
 import styles from './AddProjectForm.module.css';
 
 const API_URL = 'http://localhost:8802/api';

@@ -1,0 +1,23 @@
+.loginPage {
+  .infoText {
+    margin: 20px 0 40px;
+    font-style: italic;
+  }
+
+  button {
+    background-color: var(--color-green-dark);
+    border: 1px solid var(--color-green);
+    color: var(--color-green);
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 5px 10px;
+    margin-top: 5px;
+  }
+
+  button:hover {
+    background-color: var(--color-green);
+    border: 1px solid var(--color-green-dark);
+    color: var(--color-green-dark);
+  }
+}

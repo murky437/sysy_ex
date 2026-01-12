@@ -1,4 +1,4 @@
-import type { Project } from '../App.tsx';
+import type { Project } from '../pages/HomePage.tsx';
 import styles from './ProjectList.module.css';
 
 interface Props {

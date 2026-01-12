@@ -3,6 +3,7 @@
 :root {
   --color-off-black: #181818;
   --color-off-white: #fafafa;
+  --color-off-white-dark: color-mix(in srgb, var(--color-off-white) 60%, black);
   --color-red: #e45746;
   --color-red-dark: color-mix(in srgb, var(--color-red) 60%, black);
   --color-green: #80a37c;
@@ -37,4 +38,26 @@ body {
 #root {
   max-width: 600px;
   margin: 0 auto;
+}
+
+.formRow {
+  margin-top: 15px;
+}
+
+label {
+  display: block;
+}
+
+input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 5px 10px;
+  margin-top: 5px;
+  color: var(--color-off-white);
+  font-family: var(--font-sans), sans-serif;
+}
+
+input:focus {
+  outline: 1px dashed rgba(255, 255, 255, 0.2);
 }
