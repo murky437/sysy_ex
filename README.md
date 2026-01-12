@@ -20,13 +20,13 @@ You can run the tests inside php container like this:
 
 ## Tech choices
 
-I chose Laravel for the back end, since it takes me from 0 to 80% the fastest. Was thinking of doing it in plain Go, but I would have needed to spend more time on writing framework code to make it clean (file structure, dependency injection container, CORS, data access layer, etc...).
+I chose Laravel for the back end, since it takes me from 0 to 80% the fastest. Was thinking of doing it in plain Go, but I would have needed to spend more time on writing framework code to make it clean (file structure, dependency injection container, CORS, data access layer, migrations, etc...).
 
-I chose React for front end, because it is an optional enhancement, and it doesn't take longer to set up compared to server side rendered pages.
+I chose React for front end, because it is the most popular SPA framework, is an optional enhancement for this task, and it doesn't take longer to set up compared to server side rendered pages.
 
-I chose MariaDB for database, because it's a good open-source alternative to MySQL.
+I chose MariaDB for database, because it's well established and a good open-source alternative to MySQL.
 
-I chose nginx for dev server, because it is pretty easy to set up, and you don't need to worry about it afterward. Plus I would later use it for deployment anyway.
+I chose Nginx for dev server, because it is pretty easy to set up, and I don't need to worry about it afterward. Plus I would later use it for deployment anyway.
 
 
 ## Implemented features
@@ -42,12 +42,11 @@ I chose nginx for dev server, because it is pretty easy to set up, and you don't
   - Add form validation error handling
   - Integration tests
   - Documentation in README.md
+  - Deleting projects
 
 
 ## Next steps...
 
-- Add delete endpoint and delete button
-- Improve ui design
 - Add update endpoint and update form (modal?)
 - Add react router and / route
 - Add auth check and /login page
